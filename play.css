@@ -1,3 +1,4 @@
+
 *,
 *::before,
 *::after {
@@ -27,7 +28,7 @@ body {
 	height: -webkit-fill-available;
 	color: hsl(206, 5%, 100%);
 	background-color: hsl(216, 22%, 4%);
-	background-image: url(../images/bg.jpeg);
+	background-image: url(bg.jpeg);
 	background-size: contain;
 	background-position: top center;
 }
@@ -409,4 +410,39 @@ video {
 	.brandlogo img {
 		width: 150px;
 	}
+}
+.options-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+}
+
+.option-button {
+  padding: 1.5rem 3rem;
+  margin: 0.5rem; /* Adjust margin for spacing between buttons */
+  font-size: clamp(1.2rem, 3vw, 2rem); /* Responsive font size */
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-color: green;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-button:hover {
+  background-color: transparent;
+  border-color: red;
+  color: green;
+}
+
+.option-button:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .option-button {
+    padding: 1rem 2rem; /* Decrease padding for smaller screens */
+  }
 }

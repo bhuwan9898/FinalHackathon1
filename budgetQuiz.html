@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz</title>
-  <link rel="stylesheet" href="../CSS/quiz.css">
+  <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>Quiz related to saving.</h1>
+      <h1>Quiz related to budget.</h1>
       <nav>
         <ul>
           <li><a href="home.html">Home</a></li>
@@ -50,7 +50,7 @@
   let nextBtnCount = 0;
   //let rightAnswer = '';
   let answerDescription = '';
-  let category = 'saving';
+  let category = 'budget';
 // Fetch the JSON data using Axios
 axios.get(`${category}/${nextBtnCount}`)
   .then(response => {
@@ -100,7 +100,7 @@ submitButton.addEventListener("click", function(){
 checkButton.addEventListener('click', function(){
   event.preventDefault();
 
-  axios.get(`savingAnswer/${nextBtnCount}`)
+  axios.get(`budgetAnswer/${nextBtnCount}`)
   .then(response => {
       // Manipulate the data and render it in the HTML
       answerDescription = response.data;

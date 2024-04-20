@@ -6,11 +6,11 @@ const fs = require('fs');
 const mammoth = require('mammoth');
 const app = express();
 dotenv.config();
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+//const openai = new OpenAI({
+  //apiKey: process.env.OPENAI_API_KEY,
+//});
 const port = 3009;
-app.use(express.static('/Users/bhuwanbhandari/Desktop/NEWWORK'));
+app.use(express.static('/Users/bhuwanbhandari/Desktop/Final'));
 app.use(bodyParser.json());
 let category = '';
 //read the file
@@ -93,19 +93,19 @@ Promise.all(filepaths.map(readFileAsync))
 //console.log(questions);
 //Handle the data according to page.
 app.get('/', (req, res) => {
-  const myPage = fs.readFileSync('./HTML/home.html', 'utf8');
+  const myPage = fs.readFileSync('home.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
 app.get('/income/:nextBtnCount', (req, res) => {
-  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const questions = JSON.parse(fs.readFileSync(`income.json`));
   const index = req.params.nextBtnCount;
   const sendingData = {question: questions[index].question, options:questions[index].options};
   res.send(sendingData);
   console.log("Json file sent")
 });
 app.get('/budget/:nextBtnCount', (req, res) => {
-  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const questions = JSON.parse(fs.readFileSync(`budget.json`));
   const index = req.params.nextBtnCount;
   const sendingData = {question: questions[index].question, options:questions[index].options};
   console.log(sendingData);
@@ -113,7 +113,7 @@ app.get('/budget/:nextBtnCount', (req, res) => {
   
 });
 app.get('/debt/:nextBtnCount', (req, res) => {
-  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const questions = JSON.parse(fs.readFileSync(`debt.json`));
   const index = req.params.nextBtnCount;
   console.log(index);
   const sendingData = {question: questions[index].question, options:questions[index].options};
@@ -122,7 +122,7 @@ app.get('/debt/:nextBtnCount', (req, res) => {
   console.log("Json file sent")
 });
 app.get('/saving/:nextBtnCount', (req, res) => {
-  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const questions = JSON.parse(fs.readFileSync(`saving.json`));
   const index = req.params.nextBtnCount;
   console.log(index);
   const sendingData = {question: questions[index].question, options:questions[index].options};
@@ -133,7 +133,7 @@ app.get('/saving/:nextBtnCount', (req, res) => {
 app.get('/incomeAnswer/:nextBtnCount', (req, res) => {
   const index = req.params.nextBtnCount;
   console.log(index);
-  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const questions = JSON.parse(fs.readFileSync(`income.json`));
   const answerDescription = {answer: questions[index].correct_answer, description:questions[index].description};
   res.send(answerDescription);
   console.log("Json file sent")
@@ -141,7 +141,7 @@ app.get('/incomeAnswer/:nextBtnCount', (req, res) => {
 app.get('/debtAnswer/:nextBtnCount', (req, res) => {
   const index = req.params.nextBtnCount;
   console.log(index);
-  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const questions = JSON.parse(fs.readFileSync(`debt.json`));
   const answerDescription = {answer: questions[index].correct_answer, description:questions[index].description};
   res.send(answerDescription);
   console.log("Json file sent")
@@ -149,63 +149,63 @@ app.get('/debtAnswer/:nextBtnCount', (req, res) => {
 app.get('/budgetAnswer/:nextBtnCount', (req, res) => {
   const index = req.params.nextBtnCount;
   console.log(index);
-  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const questions = JSON.parse(fs.readFileSync(`budget.json`));
   const answerDescription = {answer: questions[index].correct_answer, description:questions[index].description};
   res.send(answerDescription);
   console.log("Json file sent")
 });
-app.get('/debtAnswer/:nextBtnCount', (req, res) => {
+app.get('/savingAnswer/:nextBtnCount', (req, res) => {
   const index = req.params.nextBtnCount;
   console.log(index);
-  const questions = JSON.parse(fs.readFileSync(`./income.json`));
+  const questions = JSON.parse(fs.readFileSync(`saving.json`));
   const answerDescription = {answer: questions[index].correct_answer, description:questions[index].description};
   res.send(answerDescription);
   console.log("Json file sent")
 });
 //Route to each page
 app.get('/debtQuiz.html', (req, res) => {
-  const myPage = fs.readFileSync('./UI/HTML/debtQuiz.html', 'utf8');
+  const myPage = fs.readFileSync('debtQuiz.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
 app.get('/budgetQuiz.html', (req, res) => {
-  const myPage = fs.readFileSync('./UI/HTML/budgetQuiz.html', 'utf8');
+  const myPage = fs.readFileSync('budgetQuiz.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
 app.get('/savingQuiz.html', (req, res) => {
-  const myPage = fs.readFileSync('./UI/HTML/savingQuiz.html', 'utf8');
+  const myPage = fs.readFileSync('savingQuiz.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
 app.get('/incomeQuiz.html', (req, res) => {
   //const questions = JSON.parse(fs.readFileSync('./Income.json'));
-  const myPage = fs.readFileSync('./UI/HTML/incomeQuiz.html', 'utf8');
+  const myPage = fs.readFileSync('incomeQuiz.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
 app.get('/play.html', (req, res) => {
-  const myPage = fs.readFileSync('./UI/HTML/play.html', 'utf8');
+  const myPage = fs.readFileSync('play.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
 app.get('/home.html', (req, res) => {
-  const myPage = fs.readFileSync('./UI/HTML/home.html', 'utf8');
+  const myPage = fs.readFileSync('home.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
 app.get('/investing.html', (req, res) => {
-  const myPage = fs.readFileSync('./UI/HTML/investing.html', 'utf8');
+  const myPage = fs.readFileSync('investing.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
 app.get('/saving.html', (req, res) => {
-  const myPage = fs.readFileSync('./UI/HTML/saving.html', 'utf8');
+  const myPage = fs.readFileSync('saving.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
 app.get('/support.html', (req, res) => {
-  const myPage = fs.readFileSync('./UI/HTML/support.html', 'utf8');
+  const myPage = fs.readFileSync('support.html', 'utf8');
   res.setHeader('Content-Type', 'text/html'); 
   res.send(myPage);
 });
